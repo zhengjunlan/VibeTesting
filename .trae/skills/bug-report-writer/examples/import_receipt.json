@@ -1,0 +1,32 @@
+{
+  "timestamp": "2026-06-29T17:58:45.624606",
+  "base_url": "https://pvmhda3j1c.feishu.cn/base/D6Eub7nmBaIHIls6tVbcUTdSnfd",
+  "table_id": "tblvocsgAtfKkqcA",
+  "total": 5,
+  "success": 5,
+  "fail": 0,
+  "dry_run": false,
+  "results": [
+    {
+      "record_id": "recvnVrl1oHpux",
+      "status": "success"
+    },
+    {
+      "record_id": "recvnVrl1ovquH",
+      "status": "success"
+    },
+    {
+      "record_id": "recvnVrl1oyJfk",
+      "status": "success"
+    },
+    {
+      "record_id": "recvnVrl1oIpGu",
+      "status": "success"
+    },
+    {
+      "record_id": "recvnVrl1oJBBn",
+      "status": "success"
+    }
+  ],
+  "warnings": []
+}

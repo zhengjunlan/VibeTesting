@@ -1,0 +1,80 @@
+{
+  "version": "1.1.1",
+  "schema_version": "1.0",
+  "base_meta": {
+    "base_url": "https://pvmhda3j1c.feishu.cn/base/D6Eub7nmBaIHIls6tVbcUTdSnfd",
+    "base_token": "D6Eub7nmBaIHIls6tVbcUTdSnfd",
+    "table_id": "tblvocsgAtfKkqcA",
+    "scanned_at": ""
+  },
+  "field_mapping": {
+    "复现步骤": "steps",
+    "负责人": "assignee",
+    "优先级": "priority",
+    "截图附件": "attachments",
+    "状态": "status",
+    "详细描述": "description",
+    "提出人": "reporter",
+    "类型": "bug_type",
+    "问题标题": "title"
+  },
+  "select_options_meta": {
+    "优先级": {
+      "available_options": [
+        "P0",
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "field_id": "fldDFLdbLy"
+    },
+    "状态": {
+      "available_options": [
+        "待解决",
+        "待验收",
+        "验收通过",
+        "验证不通过"
+      ],
+      "field_id": "fldSKoGNkF"
+    },
+    "类型": {
+      "available_options": [
+        "bug",
+        "需求"
+      ],
+      "field_id": "flddoyWCyI"
+    }
+  },
+  "select_options_mapping": {
+    "_comment": "标准 bug 状态值 → 飞书 Base 选项名映射,首次使用时会校验目标选项是否存在,缺失则在导入时输出 WARN。",
+    "类型": {
+      "bug": "bug",
+      "性能": "bug",
+      "AI模型": "bug",
+      "UI": "bug",
+      "兼容": "bug",
+      "数据": "bug",
+      "安全": "bug",
+      "需求": "需求"
+    },
+    "状态": {
+      "open": "待解决",
+      "in_progress": "待解决",
+      "reopen": "待解决",
+      "fixed": "待验收",
+      "resolved": "待验收",
+      "verified": "验收通过",
+      "closed": "验收通过",
+      "rejected": "验证不通过",
+      "wontfix": "验证不通过"
+    },
+    "优先级": {
+      "P0": "P0",
+      "P1": "P1",
+      "P2": "P2",
+      "P3": "P3"
+    }
+  },
+  "match_strategy": "fuzzy",
+  "fuzzy_threshold": 0.8
+}

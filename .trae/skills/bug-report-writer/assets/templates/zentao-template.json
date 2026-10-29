@@ -1,0 +1,46 @@
+{
+  "name": "zentao",
+  "platform": "zentao",
+  "description": "禅道Bug录入格式模板",
+  "fields": [
+    {"key": "product", "label": "所属产品", "required": true, "type": "text"},
+    {"key": "project", "label": "所属项目", "required": false, "type": "text"},
+    {"key": "module", "label": "所属模块", "required": true, "type": "text"},
+    {"key": "story", "label": "相关需求", "required": false, "type": "text", "placeholder": "如 #123"},
+    {"key": "openedBuild", "label": "影响版本", "required": true, "type": "text", "placeholder": "如 v2.1.0"},
+    {"key": "title", "label": "Bug标题", "required": true, "type": "text", "format": "[模块] 简明描述问题现象"},
+    {"key": "severity", "label": "严重程度", "required": true, "type": "select", "options": ["1-致命", "2-严重", "3-一般", "4-轻微"]},
+    {"key": "pri", "label": "优先级", "required": true, "type": "select", "options": ["1-紧急", "2-高", "3-中", "4-低"]},
+    {"key": "type", "label": "Bug类型", "required": true, "type": "select", "options": ["代码错误", "设计缺陷", "界面优化", "性能问题", "安全相关", "配置相关", "标准规范", "其他"]},
+    {"key": "os", "label": "操作系统", "required": false, "type": "select", "options": ["Android", "iOS", "Windows", "macOS", "全部"]},
+    {"key": "browser", "label": "浏览器", "required": false, "type": "select", "options": ["Chrome", "Firefox", "Safari", "微信内置", "全部"]},
+    {"key": "steps", "label": "复现步骤", "required": true, "type": "list"},
+    {"key": "expect", "label": "预期结果", "required": true, "type": "text"},
+    {"key": "actual", "label": "实际结果", "required": true, "type": "text"},
+    {"key": "error_log", "label": "错误信息", "required": false, "type": "code"},
+    {"key": "attachment", "label": "附件", "required": false, "type": "file"},
+    {"key": "impact", "label": "影响范围", "required": false, "type": "text"},
+    {"key": "reproducibility", "label": "复现概率", "required": false, "type": "select", "options": ["必现", "偶现(>50%)", "偶现(<50%)", "仅出现1次"]},
+    {"key": "notes", "label": "补充说明", "required": false, "type": "text"}
+  ],
+  "severity_mapping": {
+    "S1-致命": "1-致命",
+    "S2-严重": "2-严重",
+    "S3-一般": "3-一般",
+    "S4-轻微": "4-轻微"
+  },
+  "priority_mapping": {
+    "P0-紧急": "1-紧急",
+    "P1-高": "2-高",
+    "P2-中": "3-中",
+    "P3-低": "4-低"
+  },
+  "type_mapping": {
+    "功能缺陷": "代码错误",
+    "UI缺陷": "界面优化",
+    "性能问题": "性能问题",
+    "安全问题": "安全相关",
+    "兼容性问题": "代码错误",
+    "数据异常": "代码错误"
+  }
+}

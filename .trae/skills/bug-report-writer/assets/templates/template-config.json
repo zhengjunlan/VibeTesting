@@ -1,0 +1,30 @@
+{
+  "name": "default",
+  "platform": "generic",
+  "description": "通用Bug报告模板",
+  "fields": [
+    {"key": "title", "label": "Bug标题", "required": true, "type": "text"},
+    {"key": "severity", "label": "严重度", "required": true, "type": "select", "options": ["S1-致命", "S2-严重", "S3-一般", "S4-轻微"]},
+    {"key": "priority", "label": "优先级", "required": true, "type": "select", "options": ["P0-紧急", "P1-高", "P2-中", "P3-低"]},
+    {"key": "type", "label": "Bug类型", "required": true, "type": "select", "options": ["功能缺陷", "UI缺陷", "性能问题", "兼容性问题", "安全问题", "数据异常"]},
+    {"key": "module", "label": "所属模块", "required": true, "type": "text"},
+    {"key": "version", "label": "发现版本", "required": true, "type": "text"},
+    {"key": "os", "label": "操作系统", "required": false, "type": "text"},
+    {"key": "device", "label": "设备型号", "required": false, "type": "text"},
+    {"key": "app_version", "label": "APP版本", "required": false, "type": "text"},
+    {"key": "network", "label": "网络环境", "required": false, "type": "select", "options": ["WiFi", "4G", "5G", "弱网(2G)", "断网"]},
+    {"key": "steps", "label": "复现步骤", "required": true, "type": "list"},
+    {"key": "expected", "label": "预期结果", "required": true, "type": "text"},
+    {"key": "actual", "label": "实际结果", "required": true, "type": "text"},
+    {"key": "error_log", "label": "错误信息", "required": false, "type": "code"},
+    {"key": "impact", "label": "影响范围", "required": false, "type": "text"},
+    {"key": "attachment", "label": "附件", "required": false, "type": "file"},
+    {"key": "notes", "label": "补充说明", "required": false, "type": "text"}
+  ],
+  "severity_mapping": {
+    "S1-致命": {"priority": "P0-紧急", "sla": "2小时", "color": "red"},
+    "S2-严重": {"priority": "P1-高", "sla": "24小时", "color": "orange"},
+    "S3-一般": {"priority": "P2-中", "sla": "本迭代", "color": "yellow"},
+    "S4-轻微": {"priority": "P3-低", "sla": "下迭代", "color": "green"}
+  }
+}

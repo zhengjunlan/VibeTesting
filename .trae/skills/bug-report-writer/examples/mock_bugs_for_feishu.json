@@ -1,0 +1,99 @@
+[
+  {
+    "title": "AI图片生成服务返回空白图(概率性)",
+    "description": "调用gpt-image-1接口生成商品海报时,约5%概率返回空白PNG。返回HTTP 200但文件size=1024 bytes(仅占位符)。\n\n通过日志确认服务端API调用成功,但response.image_b64是空字符串。问题出现在多模态模型的图像解码阶段。",
+    "steps": [
+      "登录AIO平台 → 选择「商品海报生成」智能体",
+      "上传产品图 + 输入文案prompt",
+      "点击「生成」按钮",
+      "等待5-10秒,前端轮询任务状态",
+      "任务状态显示「成功」,但下载图片后是空白"
+    ],
+    "expected": "生成符合prompt描述的商品海报图,内容完整、构图合理",
+    "actual": "下载的图片是1KB的占位符,内容为空白",
+    "environment": "测试环境 / gpt-image-1 API / 概率性复现(约5%)",
+    "bug_type": "AI模型",
+    "status": "open",
+    "priority": "P0",
+    "reporter": "许卉",
+    "assignee": "AI平台组-张三",
+    "ai_analysis": "**根因推断**: 多模态模型在图像解码阶段存在5%概率返回空b64串,可能是模型推理时的随机种子问题或网络层的b64截断。\n\n**修复方向**:\n1. 服务端增加response.image_b64空值校验,空值时自动重试(最多3次)\n2. 在网关层增加image_b64长度检查,长度<1000直接判定为失败\n3. 联系模型供应商反馈b64空值case",
+    "model_version": "gpt-image-1",
+    "created_at": "2026-06-29 17:00"
+  },
+  {
+    "title": "登录页接口 P95 响应时间超 SLA",
+    "description": "登录接口 /api/v1/login 在 17:00-19:00 高峰期 P95 达到 1280ms,远超 SLA 500ms。\n\n压测报告显示并发 2000 用户时 P95 从 480ms 飙升至 1280ms,数据库连接池等待时间占比 65%。",
+    "steps": [
+      "执行 JMeter 登录压测脚本 (200 并发用户, ramp-up 60s)",
+      "持续压测 10 分钟",
+      "查看 Grafana 监控面板的 P95 指标",
+      "查看应用日志和数据库慢查询"
+    ],
+    "expected": "P95 响应时间 ≤ 500ms,满足 SLA 要求",
+    "actual": "P95 达到 1280ms,超出 SLA 156%,已影响用户体验",
+    "environment": "生产环境 / 200 并发 / 高峰期 17:00-19:00",
+    "bug_type": "性能",
+    "status": "open",
+    "priority": "P1",
+    "reporter": "许卉",
+    "assignee": "后端组-李四",
+    "created_at": "2026-06-29 16:30"
+  },
+  {
+    "title": "Safari 浏览器下商品卡片图片错位",
+    "description": "在 Safari 15+ 浏览器下,首页商品列表的卡片图片位置偏移约 20px,与文字描述不对齐。\n\nChrome / Edge / Firefox 均正常,仅 Safari 表现异常。初步判断是 flex 布局在 Safari 下的渲染差异。",
+    "steps": [
+      "使用 Safari 15+ 打开首页",
+      "滚动到「热门推荐」商品列表",
+      "观察商品卡片布局",
+      "对比 Chrome 下的同一页面"
+    ],
+    "expected": "商品卡片图片和文字水平对齐,无偏移",
+    "actual": "图片相对文字下移约 20px,视觉错位明显",
+    "environment": "macOS 12.6 / Safari 15.6 / 1440x900 分辨率",
+    "bug_type": "兼容",
+    "status": "open",
+    "priority": "P2",
+    "reporter": "许卉",
+    "assignee": "前端组-王五",
+    "created_at": "2026-06-29 14:20"
+  },
+  {
+    "title": "用户中心订单数显示错误",
+    "description": "用户中心「我的订单」Tab 显示订单总数为 0,但实际有 5 条订单记录。\n\n后端接口 /api/v1/user/orders 返回 5 条数据正确,但前端累加逻辑只统计了 status=paid 的订单。",
+    "steps": [
+      "登录测试账号 (有 5 条历史订单,2 条已支付,3 条待支付)",
+      "进入「用户中心 → 我的订单」",
+      "查看 Tab 上的订单总数"
+    ],
+    "expected": "Tab 显示「全部 (5)」,与实际订单总数一致",
+    "actual": "Tab 显示「全部 (2)」,仅统计了已支付订单",
+    "environment": "测试环境 / 测试账号 test_user_001",
+    "bug_type": "数据",
+    "status": "open",
+    "priority": "P1",
+    "reporter": "许卉",
+    "assignee": "前端组-赵六",
+    "created_at": "2026-06-29 11:15"
+  },
+  {
+    "title": "新增「智能客服接入」功能需求",
+    "description": "在控制台新增「智能客服接入」模块,允许客户一键接入AI客服系统。\n\n需求要点:\n1. 控制台首页新增「智能客服」入口卡片\n2. 点击后跳转到客服配置页(支持选择模型、配置欢迎语)\n3. 接入后用户咨询自动转AI客服,人工客服兜底\n4. 后台支持查看对话历史和满意度评分",
+    "steps": [
+      "需求评审通过后进入开发",
+      "需产品给出原型图和详细 PRD",
+      "需设计给出视觉稿",
+      "技术方案:复用现有 AI Agent 框架,新增 customer_service 智能体类型"
+    ],
+    "expected": "需求开发完成后,客户可在控制台一键接入智能客服",
+    "actual": "需求待开发,目前无此功能",
+    "environment": "待开发",
+    "bug_type": "需求",
+    "status": "open",
+    "priority": "P2",
+    "reporter": "许卉",
+    "assignee": "产品组-钱七",
+    "created_at": "2026-06-29 10:00"
+  }
+]

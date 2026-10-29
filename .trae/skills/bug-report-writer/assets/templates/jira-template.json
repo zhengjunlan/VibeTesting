@@ -1,0 +1,23 @@
+{
+  "name": "jira",
+  "platform": "jira",
+  "description": "Jira平台Bug报告模板",
+  "fields": [
+    {"key": "summary", "label": "Summary", "jira_field": "summary", "required": true, "type": "text"},
+    {"key": "issue_type", "label": "Issue Type", "jira_field": "issuetype", "required": true, "type": "select", "options": ["Bug"], "default": "Bug"},
+    {"key": "priority", "label": "Priority", "jira_field": "priority", "required": true, "type": "select", "options": ["Highest", "High", "Medium", "Low", "Lowest"]},
+    {"key": "severity", "label": "Severity", "jira_field": "customfield_severity", "required": true, "type": "select", "options": ["S1-致命", "S2-严重", "S3-一般", "S4-轻微"]},
+    {"key": "components", "label": "Component/s", "jira_field": "components", "required": true, "type": "text"},
+    {"key": "affects_version", "label": "Affects Version/s", "jira_field": "versions", "required": true, "type": "text"},
+    {"key": "description", "label": "Description", "jira_field": "description", "required": true, "type": "wiki_markup"},
+    {"key": "environment", "label": "Environment", "jira_field": "environment", "required": false, "type": "text"},
+    {"key": "attachment", "label": "Attachment", "jira_field": "attachment", "required": false, "type": "file"},
+    {"key": "labels", "label": "Labels", "jira_field": "labels", "required": false, "type": "tags"}
+  ],
+  "priority_mapping": {
+    "S1-致命": "Highest",
+    "S2-严重": "High",
+    "S3-一般": "Medium",
+    "S4-轻微": "Low"
+  }
+}

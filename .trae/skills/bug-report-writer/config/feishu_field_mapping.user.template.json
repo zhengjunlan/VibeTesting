@@ -1,0 +1,37 @@
+{
+  "_comment": "用户自定义飞书 Base 字段映射模板。复制本文件 → 删除 _comment 字段 → 按实际 Base 表字段填写即可。",
+  "version": "1.1.1",
+  "schema_version": "1.0",
+  "base_meta": {
+    "_comment": "首次配置时,运行 feishu_field_mapper.py scan 命令可自动填充。",
+    "base_url": "",
+    "base_token": "",
+    "table_id": "",
+    "view_id": "",
+    "scanned_at": ""
+  },
+  "field_mapping": {
+    "_comment": "键=飞书表字段名,值=标准 bug 字段名(title/description/steps/expected/actual/environment/bug_type/status/priority/assignee/reporter/created_at/attachments/ai_analysis)。",
+    "示例字段1": "title",
+    "示例字段2": "description"
+  },
+  "match_strategy": "fuzzy",
+  "fuzzy_threshold": 0.8,
+  "select_options_mapping": {
+    "_comment": "标准 bug 值 → 飞书 Base 选项名映射。选项不存在时,导入会输出 WARN 并跳过该字段。",
+    "类型字段": {
+      "bug": "bug",
+      "需求": "需求"
+    },
+    "状态字段": {
+      "open": "待解决",
+      "fixed": "待验收"
+    },
+    "优先级字段": {
+      "P0": "P0",
+      "P1": "P1",
+      "P2": "P2",
+      "P3": "P3"
+    }
+  }
+}
